@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+
+<h1>BMI Calculator</h1>
+
+<form id="bmiForm">
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" step="0.1" required>
+
+    <label for="height">Height (m):</label>
+    <input type="number" id="height" step="0.01" required>
+
+    <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+function calculateBMI() {
+    // Get input values
+    var weight = parseFloat(document.getElementById('weight').value);
+    var height = parseFloat(document.getElementById('height').value);
+
+    // Calculate BMI
+    var bmi = weight / (height ** 2);
+
+    // Determine BMI category
+    var resultMessage;
+    if (bmi < 18.5) {
+        resultMessage = `Your BMI is ${bmi.toFixed(2)}, so you are underweight.`;
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        resultMessage = `Your BMI is ${bmi.toFixed(2)}, so you have a normal weight.`;
+    } else {
+        resultMessage = `Your BMI is ${bmi.toFixed(2)}, so you are overweight.`;
+    }
+
+    // Update the result message in the HTML document
+    document.getElementById('result').innerText = resultMessage;
+}
+</script>
+
+</body>
+</html>
